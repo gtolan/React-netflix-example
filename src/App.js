@@ -2,11 +2,15 @@ import logo from './logo.svg';
 import './App.scss';
 import SwipeSlider from './components/SwipeSlider';
 import { useEffect } from 'react';
-import ImageList from './components/ImageList';
-
+// import ImageList from './components/ImageList';
+// import SwipeableViews from 'react-swipeable-views';
+// import tvShows from './mock-apis/tv';
+// import useImageListManager from './components/useImageListManager'
+// import './styles/ImageList.scss';
+// import ImageList from './ImageList';
 
 const App = () => {
-
+  const array = [1,2,3,4]
 
   useEffect(() => {
     // var requestOptions = {
@@ -30,8 +34,13 @@ const App = () => {
         <p>
           Edit <code>src/App.js</code> and save to reload.
         </p>
-     <SwipeSlider />
-     <ImageList />
+        {/* <ImageList /> */}
+        {array && (
+          array.map(item => <SwipeSlider/>)
+        )}
+        {/* <SwipeSlider /> */}
+      
+        
       </header>
     </div>
   );
