@@ -1,29 +1,32 @@
 .image-list {
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: row;
-
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
 }
 
-
-
-
-
-
-
-    .swipe-view{
-            overflow-x: hidden;
-            width: 100vw;
-        .react-swipeable-view-container {
-            div[data-swipeable="true"]{
-                width: auto!important;
-                .title-image {
-                    height: 200px;
-                    margin: 5px;
-                    border-radius: 5px;
-                }
-            }
-        }
+.swipe-view {
+  overflow-x: hidden;
+  width: 100vw;
+  .react-swipeable-view-container {
+    div[data-swipeable="true"] {
+      width: auto !important;
+      .title-image {
+        height: 200px;
+        margin: 5px;
+        border-radius: 5px;
+      }
     }
+  }
+}
+
+.swipe-container {
+  opacity: 1;
+  transition: opacity 0.3s;
+  will-change: opacity;
+  &.out-of-view {
+    opacity: 0.3;
+    transition: opacity 0.3s;
+    will-change: opacity;
+  }
+}

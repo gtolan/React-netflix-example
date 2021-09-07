@@ -9,7 +9,7 @@ import profileIcon from '../styles/profile.svg';
 const Navbar = () => {
 
     const [ref, inView] = useInView({
-        threshold: 0.6,
+        threshold: 0.4,
     })
 
     return (

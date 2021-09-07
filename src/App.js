@@ -10,10 +10,13 @@ import {
   // Switch,
   // useLocation
 } from "react-router-dom";
+import useImageListManager from './components/useImageListManager';
 
 const App = () => {
-  const array = [1,2,3,4]
+  const array = [1,2,3,4];
 
+  const {appViewArray, lazyLoadArray} = useImageListManager()
+  console.log(appViewArray, 'appViewArray')
   useEffect(() => {
     // var requestOptions = {
     //   method: 'GET',
@@ -37,16 +40,14 @@ const App = () => {
       <Navbar/>
       <Route to='/' exact>
       <header className="App-header">
-        {/* <img src={logo} className="App-logo" alt="logo" /> */}
         <Header />
-        
-        {/* <ImageList /> */}
-          {/* <div className="title-wrapper" > */}
-          {array && (
-            array.map(item => <SwipeSlider/>)
-          )}
-        {/* </div> */}
-        {/* <SwipeSlider /> */}
+
+    {/* //TODO spread arrays to groups of 25 / pick random profile 
+    //update state on scroll sentinel */}
+
+
+          {appViewArray.map(item => <SwipeSlider list={item}/>)
+          }
        </header>
         </Route>
      
