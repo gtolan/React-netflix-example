@@ -1,6 +1,7 @@
-import logo from './logo.svg';
+
 import './App.scss';
 import SwipeSlider from './components/SwipeSlider';
+import Header from './components/Header';
 import Navbar from './components/Navbar';
 import { useEffect } from 'react';
 import {
@@ -36,8 +37,8 @@ const App = () => {
       <Navbar/>
       <Route to='/' exact>
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-    
+        {/* <img src={logo} className="App-logo" alt="logo" /> */}
+        <Header />
         
         {/* <ImageList /> */}
           {/* <div className="title-wrapper" > */}

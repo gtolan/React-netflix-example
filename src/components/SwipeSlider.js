@@ -1,7 +1,7 @@
 import React from 'react';
 import SwipeableViews from 'react-swipeable-views';
 import tvShows from '../mock-apis/tv';
-import useImageListManager from './useImageListManager'
+import useImageListManager from './useImageListManager';
 import '../styles/ImageList.scss';
 import ImageList from './ImageList';
 import { useInView } from 'react-intersection-observer'

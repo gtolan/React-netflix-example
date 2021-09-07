@@ -25,7 +25,18 @@ const Navbar = () => {
                     </div>
 
             </div>
-            <div className={`bottom-nav ${inView ? 'in-view' : 'out-of-view'}`}>Bottom</div>
+            <div className={`bottom-nav ${inView ? 'in-view' : 'out-of-view'}`}>
+                <Link role="button" to="/tv-series">
+                    Series
+                </Link>
+                <Link role="button" to="/films">
+                    Films
+                </Link>
+                <button role="button">
+                    Categories
+                </button>
+
+            </div>
         </nav>
     )
 }
