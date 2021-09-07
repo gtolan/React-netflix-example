@@ -1,13 +1,14 @@
 import logo from './logo.svg';
 import './App.scss';
 import SwipeSlider from './components/SwipeSlider';
+import Navbar from './components/Navbar';
 import { useEffect } from 'react';
-// import ImageList from './components/ImageList';
-// import SwipeableViews from 'react-swipeable-views';
-// import tvShows from './mock-apis/tv';
-// import useImageListManager from './components/useImageListManager'
-// import './styles/ImageList.scss';
-// import ImageList from './ImageList';
+import {
+  BrowserRouter as Router,
+  Route
+  // Switch,
+  // useLocation
+} from "react-router-dom";
 
 const App = () => {
   const array = [1,2,3,4]
@@ -27,22 +28,29 @@ const App = () => {
     //}
   }, [])
 
+ 
+
   return (
+    <Router>
     <div className="App">
+      <Navbar/>
+      <Route to='/' exact>
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        {/* <ImageList /> */}
-        {array && (
-          array.map(item => <SwipeSlider/>)
-        )}
-        {/* <SwipeSlider /> */}
-      
+    
         
-      </header>
+        {/* <ImageList /> */}
+          {/* <div className="title-wrapper" > */}
+          {array && (
+            array.map(item => <SwipeSlider/>)
+          )}
+        {/* </div> */}
+        {/* <SwipeSlider /> */}
+       </header>
+        </Route>
+     
     </div>
+    </Router>
   );
 }
 
