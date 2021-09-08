@@ -1,21 +1,20 @@
-import React, { useContext } from 'react';
 import '../styles/ImageList.scss';
-import { GlobalContext } from '../GlobalState';
 import SwipeContainer from './SwipeContainer';
 import { useInView } from 'react-intersection-observer';
 import useImageListManager from './useImageListManager';
   
     
 const SwipeSlider = () => {
-  const {loadOnScrollArray} = useContext(GlobalContext)
-  const {addToLoadScrollArray, appViewArray} = useImageListManager()
+
+  const {addToLoadScrollArray, loadOnScrollArray, appViewArray} = useImageListManager()
 
   const [infiniteScroll, inView] = useInView({
       threshold: 0.3,
   })
- 
+  const rowTitles = ['My List', 'Continue Watching', 'Popular on Netflix', 'Trending Now']
+  const loadedTowTitles = ['Watch it Again','Recently Added', 'Comedies','Thrillers']
   if(inView){
-      console.log('its in view')
+     //Todo add debounce or delay
       addToLoadScrollArray()
   }
 
@@ -27,25 +26,29 @@ const SwipeSlider = () => {
     return (
       <div>
         <div>
-          {/* Swipeable views cannot take a component as it wraps elements for position before load */}
-            {appViewArray.length > 0 ? (appViewArray.map((row)=> {
-                    return (<SwipeContainer row={row}/>)
+            {appViewArray.length > 0 ? (appViewArray.map((row, id)=> {
+                    return (
+                    <div>
+                      <h5 className="row-title">{rowTitles[id]}</h5>
+                      <SwipeContainer row={row}/></div>)
                     })) 
                     : (<div></div>)
                     }
         </div>
         <div className="lazy-load-rows">
-            {loadOnScrollArray.length > 0 ? (loadOnScrollArray.map((row) => {
-                    return (<SwipeContainer row={row}/>)
+            {loadOnScrollArray.length > 0 ? (loadOnScrollArray.map((row,id) => {
+                    return (<div>
+                      <h5 className="row-title">{loadedTowTitles[id]}</h5>
+                      <SwipeContainer row={row}/></div>)
                           })) 
                           : (<div></div>)
                           }
         </div>  
+
         {appViewArray.length > 0 ? 
-        (<div className={"infinite-scroll-sentinel" + ` swipe-container ${inView ? 'in-view':'out-of-view'}`}ref={infiniteScroll}>
-                          {inView.toString}
-                          {/* addLazyLoad */}
-        </div>  ) : (<div></div>)}
+            (<div className={"infinite-scroll-sentinel" + ` swipe-container ${inView ? 'in-view':'out-of-view'}`}ref={infiniteScroll}>
+                              {inView.toString}
+            </div>  ) : (<div></div>)}
 
       </div>
     );

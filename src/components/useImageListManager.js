@@ -1,16 +1,10 @@
-// import api from '../mock-apis/title';
 import tvShows from '../mock-apis/tv';
 import { useEffect, useReducer } from 'react';
 import imageListReducer from './imageListReducer';
-import { GlobalContext } from '../GlobalState';
+
 
 const useImageListManager = () => {
-
-    // const [tvShowsList, setTVShows] = useState([]);
-    // const [headerTitle, setHeaderTitle] = useState([]);
-    // const [appViewArray, setAppViewArray] = useState([]);
-    // const [lazyLoadArray, setLazyLoadArray] = useState([]);
-
+    console.log('useImageListManager render')
     const [{tvShowsList,
             headerTitle,
             appViewArray,
@@ -19,8 +13,6 @@ const useImageListManager = () => {
                                              headerTitle:[],
                                              appViewArray:[],
                                              loadOnScrollArray:[]})
-
-    // const {tvShowsList} = useContext(GlobalContext)
 
     const splitData = () => {
 
@@ -52,17 +44,12 @@ const useImageListManager = () => {
           
     },[])
 
-   
     const addToLoadScrollArray = () => {
-        console.log(loadOnScrollArray.length)
         if(appViewArray.length > loadOnScrollArray.length){
             const arr = [...loadOnScrollArray, appViewArray[loadOnScrollArray.length]];
-
             dispatch({type: 'addToLoadRows', payload: arr});
         }
-        console.log(appViewArray[loadOnScrollArray.length],'loadOnScrollArray Index USE')
     }
-
 
     return {tvShowsList, headerTitle, appViewArray, loadOnScrollArray, addToLoadScrollArray}
 }

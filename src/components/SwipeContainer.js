@@ -7,13 +7,15 @@ const SwipeContainer = ({row}) => {
    const [ref, inView] = useInView({
     threshold: 0.3,
    })
+   
    const genRandomID = ()=>{
-         const formatYmd = date => date.getTime();
-        return formatYmd;
+         const millis = date => date.getTime();
+        return millis;
    }
 
     return (
         <div className={`swipe-container ${inView ? 'in-view':'out-of-view'}`} ref={ref} >
+                      {/* Swipeable views cannot take a component as it wraps elements for position before load */}
                         <SwipeableViews key={genRandomID()} enableMouseEvents className='swipe-view' threshold={2}>
                           {row.length > 0  ? (row.map((row,idx)=> {
                               return (
