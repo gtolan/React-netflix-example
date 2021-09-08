@@ -1,60 +1,76 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import SwipeableViews from 'react-swipeable-views';
-import tvShows from '../mock-apis/tv';
 import useImageListManager from './useImageListManager';
 import '../styles/ImageList.scss';
-import ImageList from './ImageList';
-import { useInView } from 'react-intersection-observer'
+import { useInView } from 'react-intersection-observer';
+import { GlobalContext } from '../GlobalState';
 
     
-
-
-const SwipeSlider = ({list}) => {
+const SwipeSlider = ({list,idx,lazyloadArr}) => {
     
-
-   const {tvShowsList} = useImageListManager()
+   const { appViewArray } = useContext(GlobalContext);
+   const { loadOnScrollArray } = useContext(GlobalContext);
+   console.log(appViewArray, 'appViewAr inSS')
+  //  const { tvShowsList } = useImageListManager()
    const [ref, inView] = useInView({
     threshold: 0.3,
-  })
+   })
+   const [ref2, inView2] = useInView({
+    threshold: 0.3,
+   })
+   const genRandomID = ()=>{
+     const formatYmd = date => date.getTime();
+    return formatYmd;
+   }
 
-    if(tvShowsList.length === 0){
+
+   console.log('SwipeSlider render')
+    if(appViewArray.length === 0){
         return <div className='loading'>Loading</div>
-    }
+    } 
 
     return (
-      <div className={`swipe-container ${inView ? 'in-view':'out-of-view'}`} ref={ref}>
+      <div>
+      <div className={`swipe-container ${inView2 ? 'in-view':'out-of-view'}`} ref={ref2}>
         {inView.toString()}
-          <SwipeableViews enableMouseEvents className='swipe-view' threshold='2'>
-
-                {list.length > 0  ? (list.map(show => {
+        {/* Swipeable views cannot take a component as it wraps elements for position before load */}
+          {appViewArray.length > 0 ? (appViewArray.map((row, idx )=> {
                   return (
-                          <img src={show.image} alt={show.title} className="title-image"/>
+                        <SwipeableViews key={idx + genRandomID()} ref={ref} enableMouseEvents className='swipe-view' threshold={2}>
+                          {row.length > 0  ? (row.map((row,idx)=> {
+                              return (
+                                 <img src={row.image} key={idx + genRandomID()} alt={row.title} className="title-image"/>
+                              )
+                          })) : (<div></div>)}
+                        </SwipeableViews>
                   )
                   })) 
-                  : (<div></div>)}
-
-          </SwipeableViews>
+                  : (<div></div>)
+                  }
       </div>
+      <div className={`swipe-container ${inView ? 'in-view':'out-of-view'}`} ref={ref} >
+            {loadOnScrollArray.length > 0 ? (loadOnScrollArray.map((row, idx) => {
+                  return (
+                        <SwipeableViews key={idx + genRandomID()}  enableMouseEvents className='swipe-view' threshold={2}>
+                          {row.length > 0  ? (row.map((row, idx )=> {
+                              return (
+                                 <img src={row.image} key={idx + genRandomID()}  alt={row.title} className="title-image"/>
+                              )
+                          })) : (<div></div>)}
+                        </SwipeableViews>
+                  )
+                  })) 
+                  : (<div></div>)
+                  }
+          </div>
+          </div>
     );
 }
+//,areEqual)
 
+
+
+//key={idx + genRandomID()}
 export default SwipeSlider;
 
 
-
-      // <SwipeableViews
-      //   enableMouseEvents
-      //   action={actions => setSwipeableActions(actions)}
-      //   resistance
-      //   animateHeight
-      //   index={tabIndex}
-      //   onChangeIndex={index => handleChange(index)}
-      // >
-
-        {/* <ImageList /> */}
-        {/* {items.map((item, index) => (
-          <div className={classes[`slide${index}`]}>
-            <img className={classes.image} src={item} />
-          </div>
-        ))} */}
-      // </SwipeableViews>

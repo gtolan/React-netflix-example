@@ -1,44 +1,60 @@
-import api from '../mock-apis/title';
+// import api from '../mock-apis/title';
 import tvShows from '../mock-apis/tv';
-import { useState, useEffect } from 'react';
+import { useEffect, useReducer } from 'react';
+import imageListReducer from './imageListReducer';
+import { GlobalContext } from '../GlobalState';
 
 const useImageListManager = () => {
 
-    const [tvShowsList, setTVShows] = useState([]);
-    const [headerTitle, setHeaderTitle] = useState([]);
-    const [appViewArray, setAppViewArray] = useState([]);
-    const [lazyLoadArray, setLazyLoadArray] = useState([]);
+    // const [tvShowsList, setTVShows] = useState([]);
+    // const [headerTitle, setHeaderTitle] = useState([]);
+    // const [appViewArray, setAppViewArray] = useState([]);
+    // const [lazyLoadArray, setLazyLoadArray] = useState([]);
 
+    const [{tvShowsList,
+            headerTitle,
+            appViewArray,
+            loadOnScrollArray}, dispatch] = useReducer(imageListReducer,{
+                                             tvShowsList:[],
+                                             headerTitle:[],
+                                             appViewArray:[],
+                                             loadOnScrollArray:[]})
 
-    const divideData = (data) => {
+    // const {tvShowsList} = useContext(GlobalContext)
+
+    const splitData = () => {
+
+        console.log('splitData', tvShowsList)
         let parentArray = [];
         let tempArray = [];
- 
-        data.slice(0,100).map((show,indx)=> {
-            console.log(indx,'show,indx', tempArray)
+        
+        tvShows.items.slice(0,100).map((show,indx)=> {
              return (indx % 24 === 0 && indx !== 0) ?
                    (parentArray.push(tempArray), tempArray = []) :
                      (tempArray.push(show))
                      }
         );
-        setAppViewArray(parentArray)
+        dispatch({type:'appViewArray', payload: parentArray})
+    }
 
+    const getRandomHeader = () => {
+            return Math.floor(Math.random() * 99);
     }
 
     useEffect(() => {
-
-        //TODO divide api into 10 x 25  - lazy load - scroll restart at end
-
-        setTVShows(tvShows.items);
-        setHeaderTitle(tvShowsList[tvShowsList.length - 2])
-        divideData(tvShowsList)
+        const getData = () => {
+            dispatch({type: 'setTvShowList', payload: tvShows.items}); 
+            const randomHeader = tvShows.items[getRandomHeader()];
+            dispatch({type:'setHeaderTitle',payload:randomHeader});
+            splitData()
+        }
+        setTimeout(getData,1500)
           
-    }, [])
-
+    },[])
 
 
     
-    return {tvShowsList, headerTitle, appViewArray, lazyLoadArray}
+    return {tvShowsList, headerTitle, appViewArray, loadOnScrollArray}
 }
 
 export default useImageListManager;

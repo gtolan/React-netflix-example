@@ -1,16 +1,24 @@
-import useImageListManager from './useImageListManager'
+// import useImageListManager from './useImageListManager'
 import '../styles/Navbar.scss';
 import playIcon from '../styles/playIcon.svg';
+import React, { useContext } from 'react';
+import { GlobalContext } from '../GlobalState';
 
- const Header = () => {
+// const areEqual = (prev,next) => {
+//   return prev.headerTitle === next.headerTitle;
+// }
 
-     const {headerTitle} = useImageListManager();
+// React.memo(
+const Header = () => {
+    console.log('Header render')
+    //  const {headerTitle} = useImageListManager();
+     const { headerTitle } = useContext(GlobalContext);
 
      return (
          <div className="header-container">
              <div>
                 <div className="header-image-container">
-                    <img src={headerTitle?.image} alt="header image" className="header-image"/>
+                    <img src={headerTitle?.image} alt="header title" className="header-image"/>
                 </div>
                 <div className="header-title">
                     <p>{headerTitle?.title}</p>
@@ -28,7 +36,8 @@ import playIcon from '../styles/playIcon.svg';
              </div>
          </div>
      )
- }
+ };
+ //, areEqual)
  
  export default Header;
  

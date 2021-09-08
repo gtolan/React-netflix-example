@@ -5,8 +5,9 @@ import chromecaseIcon from '../styles/chromecaseIcon.svg';
 import { Link } from 'react-router-dom';
 import searchIcon from '../styles/searchIcon.svg';
 import profileIcon from '../styles/profile.svg';
+import React from 'react';
 
-const Navbar = () => {
+const Navbar = React.memo(() => {
 
     const [ref, inView] = useInView({
         threshold: 0.4,
@@ -32,13 +33,13 @@ const Navbar = () => {
                 <Link role="button" to="/films">
                     Films
                 </Link>
-                <button role="button">
+                <button>
                     Categories
                 </button>
 
             </div>
         </nav>
     )
-}
+})
 
-export default Navbar
+export default Navbar;
