@@ -2,8 +2,7 @@
 import './App.scss';
 import SwipeSlider from './components/SwipeSlider';
 import Header from './components/Header';
-// import { useContext } from 'react';
-// import { GlobalContext } from './GlobalState';
+import { GlobalProvider } from './GlobalState';
 import Navbar from './components/Navbar';
 import {
   BrowserRouter as Router,
@@ -13,8 +12,7 @@ import {
 
 const App = () => {
 
-  // const {appViewArray} = useContext(GlobalContext);
-  // const {loadOnScrollArray} = useContext(GlobalContext);
+
 
   return (
  
@@ -22,17 +20,12 @@ const App = () => {
       <div className="App">
         <Navbar/>
         <Route to='/' exact>
-        
-        <header className="App-header">
-          <Header />
-
-      {/* //TODO spread arrays to groups of 25 / pick random profile 
-      //update state on scroll sentinel */}
-            <SwipeSlider/>
-
-            {/* {appViewArray.map((item,idx) => <SwipeSlider idx={idx} list={item}/>)
-            } */}
-        </header>
+         <GlobalProvider>
+           <header className="App-header">
+              <Header />
+              <SwipeSlider/>
+          </header>
+        </GlobalProvider>
           </Route>
       
       </div>

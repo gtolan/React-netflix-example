@@ -52,9 +52,19 @@ const useImageListManager = () => {
           
     },[])
 
+   
+    const addToLoadScrollArray = () => {
+        console.log(loadOnScrollArray.length)
+        if(appViewArray.length > loadOnScrollArray.length){
+            const arr = [...loadOnScrollArray, appViewArray[loadOnScrollArray.length]];
 
-    
-    return {tvShowsList, headerTitle, appViewArray, loadOnScrollArray}
+            dispatch({type: 'addToLoadRows', payload: arr});
+        }
+        console.log(appViewArray[loadOnScrollArray.length],'loadOnScrollArray Index USE')
+    }
+
+
+    return {tvShowsList, headerTitle, appViewArray, loadOnScrollArray, addToLoadScrollArray}
 }
 
 export default useImageListManager;

@@ -17,6 +17,11 @@ const imageListReducer = (state, action) => {
         case 'appViewArray' :{
             return {...state,appViewArray:action.payload}
         }
+        case 'addToLoadRows':{
+            console.log(state.loadOnScrollArray,'loadOnScrollArray0RED - pay - res spread', action.payload, [...state.loadOnScrollArray, action.payload])
+            // const arr = [...state.loadOnScrollArray, action.payload]
+            return {...state,loadOnScrollArray: action.payload}
+        }
         default: {
             return state;
         }

@@ -12,7 +12,8 @@ export const GlobalProvider = ({children}) => {
             tvShowsList,
             headerTitle,
             appViewArray,
-            loadOnScrollArray
+            loadOnScrollArray,
+    
     }
 
     return (
