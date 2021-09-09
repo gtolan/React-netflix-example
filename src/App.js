@@ -8,6 +8,7 @@ import {
   BrowserRouter as Router,
   Route
 } from "react-router-dom";
+import TestContext from './components/TestContext';
 
 
 const App = () => {
@@ -20,12 +21,13 @@ const App = () => {
       <div className="App">
         <Navbar/>
         <Route to='/' exact>
-         <GlobalProvider>
-           <header className="App-header">
-              <Header />
-              <SwipeSlider/>
-          </header>
-        </GlobalProvider>
+            <GlobalProvider>
+              <header className="App-header">
+                  <Header />
+                  <TestContext />
+                  <SwipeSlider/>
+              </header>
+            </GlobalProvider>
           </Route>
       
       </div>

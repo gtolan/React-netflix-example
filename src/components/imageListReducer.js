@@ -11,8 +11,11 @@ const imageListReducer = (state, action) => {
             return {...state,headerTitle:action.payload}
         }
         case 'setTvShowList': {
-            console.log(action.payload,'setTvShowList')
-            return {...state,tvShowsList:action.payload}
+            return state.tvShowsList.length == 0 ? 
+            {...state,tvShowsList:action.payload} :
+            {...state}
+            // console.log(action.payload,'setTvShowList')
+            // return {...state,tvShowsList:action.payload}
         }
         case 'appViewArray' :{
             return {...state,appViewArray:action.payload}

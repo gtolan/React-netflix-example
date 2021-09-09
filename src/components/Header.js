@@ -12,7 +12,11 @@ const areEqual = (prev,next) => {
 const Header = React.memo(() => {
     console.log('Header render')
 
-     const { headerTitle } = useContext(GlobalContext);
+    const { headerTitle } = useContext(GlobalContext);
+
+    if(!headerTitle){
+       return <div>'Loading Header</div>
+    }
 
      return (
          <div className="header-container">

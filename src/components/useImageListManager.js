@@ -2,7 +2,6 @@ import tvShows from '../mock-apis/tv';
 import { useEffect, useReducer } from 'react';
 import imageListReducer from './imageListReducer';
 
-
 const useImageListManager = () => {
     console.log('useImageListManager render')
     const [{tvShowsList,
@@ -16,9 +15,7 @@ const useImageListManager = () => {
 
     const splitData = () => {
 
-        console.log('splitData', tvShowsList)
-        let parentArray = [];
-        let tempArray = [];
+        let parentArray =[], tempArray = [];
         
         tvShows.items.slice(0,100).map((show,indx)=> {
              return (indx % 24 === 0 && indx !== 0) ?
@@ -36,13 +33,14 @@ const useImageListManager = () => {
     useEffect(() => {
         const getData = () => {
             dispatch({type: 'setTvShowList', payload: tvShows.items}); 
-            const randomHeader = tvShows.items[getRandomHeader()];
-            dispatch({type:'setHeaderTitle',payload:randomHeader});
+            dispatch({type:'setHeaderTitle',payload:tvShows.items[getRandomHeader()]});
             splitData()
         }
         setTimeout(getData,1500)
           
-    },[])
+    },[]);
+
+
 
     const addToLoadScrollArray = () => {
         if(appViewArray.length > loadOnScrollArray.length){
