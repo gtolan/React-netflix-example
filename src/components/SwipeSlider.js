@@ -10,7 +10,7 @@ import useImageListManager from './useImageListManager';
 const SwipeSlider =() => {
 
     const { addToLoadScrollArray } = useImageListManager()
-    const {loadOnScrollArray, appViewArray } = useContext(GlobalContext);
+    const { loadOnScrollArray, appViewArray } = useContext(GlobalContext);
     const rowTitles = ['My List', 'Continue Watching', 'Popular on Netflix', 'Trending Now'];
     const loadedTowTitles = ['Watch it Again','Recently Added', 'Comedies','Thrillers'];
     

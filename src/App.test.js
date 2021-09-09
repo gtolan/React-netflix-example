@@ -55,9 +55,7 @@ describe("netflix loading", () => {
         //                 console.log(bottomNav.getBoundingClientRect().top,'BR')
         //                 expect (position).toBe(0);
         //     },
-        //     { timeout: 200 })
-            
-              
+        //     { timeout: 200 })  
         //       })
         //  })
 
@@ -67,8 +65,8 @@ describe("netflix loading", () => {
                         const listEl = screen.getByText('My List');;
                         expect (listEl).toBeTrue
                       })
-        });
-      })
+          });
+        })
 
         describe('Shows a swipeable list of titles', () => {
                 it("check for the scroll element", () => {

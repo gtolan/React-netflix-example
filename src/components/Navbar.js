@@ -2,7 +2,6 @@ import '../styles/Navbar.scss';
 import { useInView } from 'react-intersection-observer'
 import netflixIcon from '../styles/netflix.svg';
 import chromecaseIcon from '../styles/chromecaseIcon.svg';
-// import { Link } from 'react-router-dom';
 import searchIcon from '../styles/searchIcon.svg';
 import profileIcon from '../styles/profile.svg';
 import React from 'react';

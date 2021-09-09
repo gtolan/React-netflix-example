@@ -1,3 +1,12 @@
+# Netflix sample app
+* Homepage with IMDB api
+* Infinite scroll with Intersection observer -> enter screen change opacity 
+* Uses react-swipeable which is heavy for swipe carousel
+* Context & useContext, custom hooks
+* useReducer dispatch for state mgmt
+* SCSS
+* Lots of improvements to be made eg/<route to title>/ - (spent a few hours on this)
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

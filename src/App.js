@@ -4,7 +4,6 @@ import SwipeSlider from './components/SwipeSlider';
 import Header from './components/Header';
 import { GlobalProvider } from './GlobalState';
 import Navbar from './components/Navbar';
-
 import {
   BrowserRouter as Router,
   Route
@@ -19,8 +18,8 @@ const App = () => {
  
       <Router>
       <div className="App">
-        <Navbar/>
         <Route to='/' exact>
+            <Navbar/>
             <GlobalProvider>
               <header className="App-header">
                   <Header />
@@ -28,7 +27,6 @@ const App = () => {
               </header>
             </GlobalProvider>
           </Route>
-      
       </div>
       </Router>
 

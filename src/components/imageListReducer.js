@@ -7,25 +7,19 @@ const imageListReducer = (state, action) => {
 
     switch(action.type){
         case 'setHeaderTitle' :{
-            console.log(action.payload,'setHeaderTitle')
             return state.headerTitle.hasOwnProperty('image') == false ? 
             {...state,headerTitle:action.payload} :
             {...state}
-            // return {...state,headerTitle:action.payload}
         }
         case 'setTvShowList': {
             return state.tvShowsList.length == 0 ? 
             {...state,tvShowsList:action.payload} :
             {...state}
-            // console.log(action.payload,'setTvShowList')
-            // return {...state,tvShowsList:action.payload}
         }
         case 'appViewArray' :{
             return {...state,appViewArray:action.payload}
         }
         case 'addToLoadRows':{
-            console.log(state.loadOnScrollArray,'loadOnScrollArray0RED - pay - res spread', action.payload, [...state.loadOnScrollArray, action.payload])
-            // const arr = [...state.loadOnScrollArray, action.payload]
             return {...state,loadOnScrollArray: action.payload}
         }
         default: {
