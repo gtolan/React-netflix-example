@@ -4,21 +4,23 @@ import playIcon from '../styles/playIcon.svg';
 import React, { useContext } from 'react';
 import { GlobalContext } from '../GlobalState';
 
+
+
 const areEqual = (prev,next) => {
   return prev.headerTitle === next.headerTitle;
 }
 
-// 
+ 
 const Header = React.memo(() => {
     console.log('Header render')
 
     const { headerTitle } = useContext(GlobalContext);
 
-    if(!headerTitle){
-       return <div>'Loading Header</div>
+    if(headerTitle.length === 0){
+       return <div className="loader"></div>
     }
 
-     return (
+    return (
          <div className="header-container">
     
                 <div className="header-image-container">

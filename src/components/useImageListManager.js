@@ -3,15 +3,17 @@ import { useEffect, useReducer } from 'react';
 import imageListReducer from './imageListReducer';
 
 const useImageListManager = () => {
-    console.log('useImageListManager render')
+
     const [{tvShowsList,
             headerTitle,
             appViewArray,
-            loadOnScrollArray}, dispatch] = useReducer(imageListReducer,{
+            loadOnScrollArray,
+            }, dispatch] = useReducer(imageListReducer,{
                                              tvShowsList:[],
                                              headerTitle:[],
                                              appViewArray:[],
-                                             loadOnScrollArray:[]})
+                                             loadOnScrollArray:[],
+                                             })
 
     const splitData = () => {
 

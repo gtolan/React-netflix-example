@@ -13,7 +13,6 @@ export const GlobalProvider = ({children}) => {
             headerTitle,
             appViewArray,
             loadOnScrollArray,
-    
     }
 
     return (

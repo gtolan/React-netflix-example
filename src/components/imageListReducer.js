@@ -8,7 +8,10 @@ const imageListReducer = (state, action) => {
     switch(action.type){
         case 'setHeaderTitle' :{
             console.log(action.payload,'setHeaderTitle')
-            return {...state,headerTitle:action.payload}
+            return state.headerTitle.hasOwnProperty('image') == false ? 
+            {...state,headerTitle:action.payload} :
+            {...state}
+            // return {...state,headerTitle:action.payload}
         }
         case 'setTvShowList': {
             return state.tvShowsList.length == 0 ? 
