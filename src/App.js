@@ -4,6 +4,7 @@ import SwipeSlider from './components/SwipeSlider';
 import Header from './components/Header';
 import { GlobalProvider } from './GlobalState';
 import Navbar from './components/Navbar';
+
 import {
   BrowserRouter as Router,
   Route

@@ -17,7 +17,7 @@ const Header = React.memo(() => {
     const { headerTitle } = useContext(GlobalContext);
 
     if(headerTitle.length === 0){
-       return <div className="loader"></div>
+       return <div className="loader" data-testid="spinner-loader"></div>
     }
 
     return (
@@ -30,8 +30,8 @@ const Header = React.memo(() => {
                     <p>{headerTitle?.title}</p>
                 </div>
        
-             <div className="title-controls">
-                 <button>
+             <div className="title-controls" data-testid="title-controls">
+                 <button data-testid="play-button">
                      <span className="icon">
                          <img src={playIcon} alt="play button icon" className="play-button-icon"/>
                     </span>
