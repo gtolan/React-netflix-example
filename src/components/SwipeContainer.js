@@ -1,7 +1,8 @@
-import React from 'react'
+import React, {useContext} from 'react'
 import { useInView } from 'react-intersection-observer';
 import SwipeableViews from 'react-swipeable-views';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
+import { GlobalContext } from '../GlobalState';
 
 const SwipeContainer = React.memo(({row}) => {
 
@@ -9,10 +10,7 @@ const SwipeContainer = React.memo(({row}) => {
     threshold: 0.3,
    })
 
-   const genRandomID = ()=>{
-         const millis = date => date.getTime();
-        return millis;
-   }
+   const {genRandomID} = useContext(GlobalContext)
    if(row.length == 0){
        return <div class="loader"></div>
    }
@@ -25,8 +23,7 @@ const SwipeContainer = React.memo(({row}) => {
                           {row.length > 0  ? (row.map((row,idx)=> {
                               return (
                                   <LazyLoadImage src={row.image} key={idx + genRandomID()} alt={row.title} className="title-image"/>
-
-                              )
+                          )
                           })) : (<div></div>)}
                         </SwipeableViews>
         </div>

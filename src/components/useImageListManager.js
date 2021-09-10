@@ -1,18 +1,35 @@
 import tvShows from '../mock-apis/tv';
-import { useEffect, useReducer } from 'react';
+import { useEffect, useReducer, useCallback } from 'react';
 import imageListReducer from './imageListReducer';
 
 const useImageListManager = () => {
+
+    const addToLoadScrollArray = (onScreen, offScreen) => {
+        if(onScreen.length > offScreen.length){
+            const addRows = [...offScreen, onScreen[offScreen.length]];
+            dispatch({type: 'addToLoadRows', payload: addRows});
+        }
+    }
+
+    const useDataMilliesForID = useCallback(
+        () => {
+           const millis = new Date().getTime();
+            return millis;
+        }  
+    );
 
     const [{tvShowsList,
             headerTitle,
             appViewArray,
             loadOnScrollArray,
-            }, dispatch] = useReducer(imageListReducer,{
+            addLoad,
+            genRandomID}, dispatch] = useReducer(imageListReducer,{
                                              tvShowsList:[],
                                              headerTitle:[],
                                              appViewArray:[],
                                              loadOnScrollArray:[],
+                                             addLoad:addToLoadScrollArray,
+                                             genRandomID:useDataMilliesForID
                                              })
 
     const splitData = () => {
@@ -44,14 +61,9 @@ const useImageListManager = () => {
 
 
 
-    const addToLoadScrollArray = () => {
-        if(appViewArray.length > loadOnScrollArray.length){
-            const arr = [...loadOnScrollArray, appViewArray[loadOnScrollArray.length]];
-            dispatch({type: 'addToLoadRows', payload: arr});
-        }
-    }
 
-    return {tvShowsList, headerTitle, appViewArray, loadOnScrollArray, addToLoadScrollArray}
+
+    return {tvShowsList, headerTitle, appViewArray, loadOnScrollArray, addLoad, genRandomID}
 }
 
 export default useImageListManager;

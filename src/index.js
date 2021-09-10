@@ -6,9 +6,9 @@ import reportWebVitals from './reportWebVitals';
 
 
 ReactDOM.render(
-  <React.StrictMode>
-            <App />
-  </React.StrictMode>,
+  // <React.StrictMode> //React Swipeable views errors due to deprecated class lifecylces
+            <App />,
+  // </React.StrictMode>,
   document.getElementById('root')
 );
 

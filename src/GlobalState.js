@@ -6,13 +6,17 @@ export const GlobalProvider = ({children}) => {
     const {tvShowsList,
             headerTitle,
             appViewArray,
-            loadOnScrollArray} = useImageListManager();
+            loadOnScrollArray,
+            genRandomID,
+            addLoad} = useImageListManager();
 
     const provider  = {
             tvShowsList,
             headerTitle,
             appViewArray,
             loadOnScrollArray,
+            addLoad,
+            genRandomID
     }
 
     return (
